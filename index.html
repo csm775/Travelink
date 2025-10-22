@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Travelink - Explorez le monde</title>
+</head>
+
+<body>
+    <!-- Header moderne avec effet glassmorphism -->
+    <header class="header-glass">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <span>Travelink</span>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="#hero" class="nav-link active">Accueil</a>
+                    <a href="#hotels" class="nav-link">Hôtels</a>
+                    <a href="#destinations" class="nav-link">Destinations</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="favorite-toggle" id="favoriteToggle">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="fav-count" id="favCount">0</span>
+                    </button>
+                    <button class="menu-burger" id="menuBurger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section avec recherche -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Découvrez votre prochaine
+                    <span class="gradient-text">destination</span>
+                </h1>
+                <p class="hero-subtitle">Plus de 2 millions d'hébergements dans le monde entier</p>
+                
+                <!-- Formulaire de recherche moderne -->
+                <div class="search-card">
+                    <form id="searchForm" class="search-form">
+                        <div class="search-input-group">
+                            <i class="fa-solid fa-location-dot search-icon"></i>
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                placeholder="Où souhaitez-vous aller ?"
+                                autocomplete="off"
+                            >
+                            <div id="autocomplete" class="autocomplete-dropdown"></div>
+                        </div>
+                        
+                        <div class="search-dates">
+                            <div class="date-input-group">
+                                <i class="fa-regular fa-calendar"></i>
+                                <input type="date" id="checkIn" placeholder="Arrivée">
+                            </div>
+                            <div class="date-input-group">
+                                <i class="fa-regular fa-calendar"></i>
+                                <input type="date" id="checkOut" placeholder="Départ">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="search-btn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Rechercher</span>
+                        </button>
+                    </form>
+
+                    <!-- Suggestions rapides -->
+                    <div class="quick-suggestions">
+                        <span class="suggestion-label">Destinations populaires :</span>
+                        <button class="suggestion-chip" data-city="Paris">🇫🇷 Paris</button>
+                        <button class="suggestion-chip" data-city="New York">🇺🇸 New York</button>
+                        <button class="suggestion-chip" data-city="Tokyo">🇯🇵 Tokyo</button>
+                        <button class="suggestion-chip" data-city="London">🇬🇧 Londres</button>
+                        <button class="suggestion-chip" data-city="Dubai">🇦🇪 Dubaï</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtres modernes -->
+    <section class="filters-section" id="filters">
+        <div class="container">
+            <div class="filters-wrapper">
+                <div class="filter-group">
+                    <button class="filter-btn" data-filter="all">
+                        <i class="fa-solid fa-border-all"></i>
+                        <span>Tous</span>
+                    </button>
+                    <button class="filter-btn" data-filter="hotel">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span>Hôtels</span>
+                    </button>
+                    <button class="filter-btn" data-filter="apartment">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Appartements</span>
+                    </button>
+                    <button class="filter-btn" data-filter="villa">
+                        <i class="fa-solid fa-home"></i>
+                        <span>Villas</span>
+                    </button>
+                    <button class="filter-btn" data-filter="resort">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                        <span>Resorts</span>
+                    </button>
+                </div>
+
+                <div class="filter-actions">
+                    <select id="sortSelect" class="sort-select">
+                        <option value="">Trier par</option>
+                        <option value="price-asc">Prix croissant</option>
+                        <option value="price-desc">Prix décroissant</option>
+                        <option value="rating">Meilleure note</option>
+                        <option value="distance">Distance</option>
+                    </select>
+                    
+                    <select id="priceRange" class="sort-select">
+                        <option value="">Budget</option>
+                        <option value="0-50">Moins de 50€</option>
+                        <option value="50-100">50€ - 100€</option>
+                        <option value="100-200">100€ - 200€</option>
+                        <option value="200">Plus de 200€</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Hôtels -->
+    <section id="hotels" class="hotels-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hébergements disponibles</h2>
+                <p class="results-count">
+                    <span id="resultsCount">Chargement...</span>
+                </p>
+            </div>
+
+            <!-- Loader moderne -->
+            <div id="loader" class="loader-modern">
+                <div class="loader-circle"></div>
+                <p>Recherche des meilleurs hébergements...</p>
+            </div>
+
+            <!-- Grille d'hôtels -->
+            <div id="hotelsGrid" class="hotels-grid"></div>
+
+            <!-- Message si aucun résultat -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fa-regular fa-face-sad-tear"></i>
+                <h3>Aucun hébergement trouvé</h3>
+                <p>Essayez de modifier vos critères de recherche</p>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Section Destinations tendance -->
+    <section id="destinations" class="destinations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Destinations tendance</h2>
+                <p class="section-subtitle">Explorez les destinations les plus prisées du moment</p>
+            </div>
+
+            <div class="destinations-grid" id="destinationsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Footer moderne -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span>Travelink</span>
+                    </div>
+                    <p class="footer-desc">Votre passeport pour l'aventure. Découvrez le monde avec nous.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>À propos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Qui sommes-nous</a></li>
+                        <li><a href="#">Carrières</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Presse</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Centre d'aide</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Partenaires</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">CGU</a></li>
+                        <li><a href="#">Confidentialité</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Travelink. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal favoris -->
+    <div id="favoritesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-heart"></i> Mes favoris</h2>
+                <button class="modal-close" id="closeModal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="favoritesBody"></div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
